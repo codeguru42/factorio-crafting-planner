@@ -1,4 +1,6 @@
-export default {
+import { EdgeDefinition, ElementsDefinition, NodeDefinition } from 'cytoscape'
+
+const recipes = {
   "iron gear wheel": ["iron plate"],
   "copper cable": ["copper plate"],
   "electronic circuit": ["iron plate", "copper cable"],
@@ -43,3 +45,20 @@ export default {
   "gun turret": ["iron plate", "copper plate", "iron gear wheel"],
   "radar": ["iron plate", "iron gear wheel", "electronic circuit"]
 }
+
+type Recipes = typeof recipes
+type RecipesKey = keyof Recipes
+
+const nodes: NodeDefinition[] = Object.keys(recipes).map((item: string): NodeDefinition => {
+  return {data: {id: item}}
+})
+
+const edges: EdgeDefinition[][] = Object.keys(recipes).map((item: string): EdgeDefinition[] => {
+  return recipes[item as RecipesKey].map((ingredient: string) => {
+    return {data: {source: ingredient, target: item}}
+  })
+})
+
+const elements: ElementsDefinition = {nodes, edges: edges.flat(),}
+
+export default elements
