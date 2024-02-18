@@ -1,6 +1,16 @@
 import { EdgeDefinition, ElementsDefinition, NodeDefinition } from 'cytoscape'
 
 const recipes = {
+  "wood": [],
+  "coal": [],
+  "iron ore": [],
+  "copper ore": [],
+  "iron plate": [],
+  "copper plate": [],
+  "stone": [],
+  "stone brick": [],
+  "steel plate": [],
+  "water": [],
   "iron gear wheel": ["iron plate"],
   "copper cable": ["copper plate"],
   "electronic circuit": ["iron plate", "copper cable"],
